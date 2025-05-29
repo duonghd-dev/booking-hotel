@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Booking IDUONG</title>
+</head>
+
+<body>
+    <header class="pc-header">
+        <div class="header-top">
+            <div class="logo-booking">
+                <a href="#"><img src="./image/HotelDuong.png" alt="Booking" /></a>
+            </div>
+            <nav class="navigation">
+                <a href="./index.html">Trang chủ</a>
+                <a href="./introduce.html">Giới thiệu</a>
+                <a href="#">Phòng nghĩ</a>
+                <a href="#">Dịch vụ</a>
+                <a href="#">Tin tức</a>
+                <a href="#">Liên hệ</a>
+                <a href="tel:+84702374978">(+84) 702374978</a>
+            </nav>
+
+            <div class="btnBooking">
+                <a href="#">Booking!</a>
+            </div>
+        </div>
+
+        <div class="slides">
+            <img src="./image/hotel-home.jpg" class="active" alt="Hotel" />
+            <img src="./image/Slide1.jpg" alt="Hotel" />
+            <img src="./image/slide2.jpg" alt="Hotel" />
+            <img src="./image/Slide3.jpg" alt="Hotel" />
+        </div>
+        <div class="btns">
+            <button type="button" class="btn btn-left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button type="button" class="btn btn-right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="slide-overlay"></div>
+
+        <div class="search-bar">
+            <div class="date-group">
+                <label for="checkin" class="date-label">Check in</label>
+                <input type="date" id="checkin" class="input-checkIn" name="Check-in date" />
+                <label for="checkout" class="date-label">Check out</label>
+                <input type="date" id="checkout" class="input-dates" name="Check-out date" />
+            </div>
+            <div class="select-wrapper" id="guest-selector">
+                <div class="selected-option" onclick="toggleGuestDropdown()">
+                    <span id="summary">2 adults · 0 children · 1 room</span>
+                    <i class="arrow-down"></i>
+                </div>
+                <div class="dropdown hidden" id="guest-dropdown">
+                    <div class="option-row">
+                        <label>Adults</label>
+                        <div class="counter">
+                            <button type="button" onclick="changeCount('adults', -1)">–</button>
+                            <span id="adults-count">2</span>
+                            <button type="button" onclick="changeCount('adults', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <label>Children</label>
+                        <div class="counter">
+                            <button type="button" onclick="changeCount('children', -1)">–</button>
+                            <span id="children-count">0</span>
+                            <button type="button" onclick="changeCount('children', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <label>Rooms</label>
+                        <div class="counter">
+                            <button type="button" onclick="changeCount('rooms', -1)">–</button>
+                            <span id="rooms-count">1</span>
+                            <button type="button" onclick="changeCount('rooms', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="option-row pet-option">
+                        <label for="pets">Traveling with pets?</label>
+                        <input type="checkbox" id="pets" />
+                    </div>
+                    <button type="button" class="done-btn" onclick="toggleGuestDropdown()">Done</button>
+                </div>
+            </div>
+            <button type="button" class="search-btn">Search</button>
+        </div>
+    </header>
+
+    <div class="service-list">
+        <div class="service-item">
+            <div class="service-icon"><i class="fa-solid fa-shuttle-van"></i></div>
+            <div class="service-info">
+                <h3>Đưa đón</h3>
+            </div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
+            <div class="service-info">
+                <h3>SPA</h3>
+            </div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon"><i class="fa-solid fa-wifi"></i></div>
+            <div class="service-info">
+                <h3>Wifi</h3>
+            </div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon"><i class="fa-solid fa-dumbbell"></i></div>
+            <div class="service-info">
+                <h3>GYM</h3>
+            </div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div class="service-info">
+                <h3>Nhà hàng</h3>
+            </div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon"><i class="fa-solid fa-swimming-pool"></i></div>
+            <div class="service-info">
+                <h3>Bể bơi</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-introducing">
+        <div class="text-introducing-inner">
+            <div class="text-introducing-image">
+                <div class="img-stack">
+                    <img src="./image/hotel-introducing1.jpg" class="img-square img-back" alt="Introducing Hotel">
+                    <img src="./image/hotel-introducing2.jpg" class="img-circle" alt="Introducing Hotel">
+                    <div class="img-square img-front video-thumb" onclick="showHotelVideo()">
+                        <img src="./image/hotel-introducing3.jpg" alt="Introducing Hotel">
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="video-modal" id="videoModal">
+                    <div class="video-modal-content">
+                        <span class="close-video" onclick="closeHotelVideo()">&times;</span>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Hotel Video" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class=" text-introducing-content ">
+                <h1>CHÀO MỪNG BẠN ĐẾN VỚI ĐIỂM DỪNG CHÂN
+                    <br> LÝ TƯỞNG IDUONG HOTEL </br>
+                </h1>
+                <span><i>Đẳng cấp và sang trọng</i></span>
+                <p>
+                    Chào mừng bạn đến với Golden Hotel - điểm dừng chân lý tưởng cho mọi chuyến du lịch của bạn. Với không gian ấm áp, dịch vụ chuyên nghiệp và vị trí thuận lợi, cam kết mang đến cho bạn trải nghiệm không gian nghỉ dưỡng tuyệt vời
+                </p>
+                <div class="span-grid">
+                    <span><i class="fa-solid fa-star"></i> Trải nghiệm sang trọng</span>
+                    <span><i class="fa-solid fa-shield-halved"></i> An ninh an toàn</span>
+                    <span><i class="fa-solid fa-user-tie"></i> Dịch vụ chuyên nghiệp</span>
+                    <span><i class="fa-solid fa-couch"></i> Tiện nghi đa dạng</span>
+                </div>
+
+                <div class="btn-introducing">
+                    <a href="#">Khám phá!</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="introducing-rooms">
+        <div class="rooms-introducing">
+            <div class="rooms-introducing-content">
+                <span>Tiện nghi và an toàn</span>
+                <h1>PHÒNG KHÁCH SẠN CỦA CHÚNG TÔI</h1>
+            </div>
+        </div>
+
+        <div class="rooms-introducing-list">
+            <div class="rooms-introducing-item">
+                <img src="./image/rooms-Superior.jpg" alt="Phòng Superior">
+                <div class="room-content">
+                    <h2>Phòng Superior</h2>
+                    <p><span>👤</span> Người lớn: 4 &nbsp;&nbsp; <span>✖</span> Diện tích: 60 m²</p>
+                    <p class="description">All our Room have big windows to help you take a broad..</p>
+                    <p class="price">Từ <strong>570,000₫</strong> / đêm</p>
+                    <button class="book-btn">Đặt ngay ➤</button>
+                </div>
+            </div>
+            <div class="rooms-introducing-item">
+                <img src="./image/room-Standard.jpg" alt="Phòng Standard">
+                <div class="room-content">
+                    <h2>Phòng Standard</h2>
+                    <p><span>👤</span> Người lớn: 2 &nbsp;&nbsp; <span>✖</span> Diện tích: 40 m²</p>
+                    <p class="description">All our Room have big windows to help you take a broad..</p>
+                    <p class="price">Từ <strong>650,000₫</strong> / đêm</p>
+                    <button class="book-btn">Đặt ngay ➤</button>
+                </div>
+            </div>
+            <div class="rooms-introducing-item">
+                <img src="./image/room-PresidentSuite.jpg" alt="Phòng President Suite">
+                <div class="room-content">
+                    <h2>Phòng President Suite</h2>
+                    <p><span>👤</span> Người lớn: 3 &nbsp;&nbsp; <span>✖</span> Diện tích: 50 m²</p>
+                    <p class="description">All our Room have big windows to help you take a broad..</p>
+                    <p class="price">Từ <strong>590,000₫</strong> / đêm</p>
+                    <button class="book-btn">Đặt ngay ➤</button>
+                </div>
+            </div>
+            <div class="rooms-introducing-item">
+                <img src="./image/room-PremiumRiver.jpg" alt="Phòng Premium River Deluxe">
+                <div class="room-content">
+                    <h2>Phòng Superior</h2>
+                    <p><span>👤</span> Người lớn: 2 &nbsp;&nbsp; <span>✖</span> Diện tích: 40 m²</p>
+                    <p class="description">All our Room have big windows to help you take a broad..</p>
+                    <p class="price">Từ <strong>490,000₫</strong> / đêm</p>
+                    <button class="book-btn">Đặt ngay ➤</button>
+                </div>
+            </div>
+            <div class="rooms-introducing-item">
+                <img src="./image/room-Royal.jpg" alt="Phòng Premium City Deluxe">
+                <div class="room-content">
+                    <h2>Phòng Standard</h2>
+                    <p><span>👤</span> Người lớn: 2 &nbsp;&nbsp; <span>✖</span> Diện tích: 20 m²</p>
+                    <p class="description">All our Room have big windows to help you take a broad..</p>
+                    <p class="price">Từ <strong>670,000₫</strong> / đêm</p>
+                    <button class="book-btn">Đặt ngay ➤</button>
+                </div>
+            </div>
+            <div class="rooms-introducing-item">
+                <img src="./image/room-Luxury.jpg" alt="Phòng Luxury">
+                <div class="room-content">
+                    <h2>Phòng President Suite</h2>
+                    <p><span>👤</span> Người lớn: 3 &nbsp;&nbsp; <span>✖</span> Diện tích: 50 m²</p>
+                    <p class="description">All our Room have big windows to help you take a broad..</p>
+                    <p class="price">Từ <strong>690,000₫</strong> / đêm</p>
+                    <button class="book-btn">Đặt ngay ➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-hotel">
+        <div class="service-content">
+            <h4>Tận tâm chuyên nghiệp</h4>
+            <h1>DỊCH VỤ ĐẲNG CẤP VÀ TIỆN ÍCH</h1>
+        </div>
+
+        <div class="slider-wrapper">
+            <div class="service-list-hotel">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <p class="number">01</p>
+                    <h3>Nhà hàng 5 sao</h3>
+                    <p>Thưởng thức ẩm thực tinh tế và đa dạng tại nhà hàng sang trọng của chúng tôi.</p>
+                    <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <p class="number">02</p>
+                    <h3>Dịch Vụ Phòng</h3>
+                    <p>Đội ngũ phục vụ chu đáo, tận tâm, sẵn lòng phục vụ quý khách mọi lúc 24/7.</p>
+                    <div class="service-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <p class="number">03</p>
+                    <h3>Bể bơi ngoài trời</h3>
+                    <p>Thư giãn và tận hưởng không gian xanh mát tại hồ bơi ngoài trời tiện nghi.</p>
+                    <div class="service-icon"><i class="fa-solid fa-swimming-pool"></i></div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <p class="number">04</p>
+                    <h3>SPA & Wellness</h3>
+                    <p>Cung cấp các liệu pháp spa chất lượng cao và chăm sóc sức khỏe toàn diện.</p>
+                    <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <p class="number">05</p>
+                    <h3>Phòng Hội Nghị</h3>
+                    <p>Không gian chu đáo, tiện nghi và lý tưởng cho các sự kiện quy mô nhỏ đến lớn.</p>
+                    <div class="service-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="evaluate-hotel">
+        <div class="evaluate-title">
+            <span>Khách hàng phản hồi</span>
+            <h1>ĐÁNH GIÁ TÍCH CỰC CỦA KHÁCH HÀNG</h1>
+        </div>
+        <div class="evaluate-list">
+            <div class="evaluate-item">
+                <img src="./image/avatar1.jpg" alt="Avatar" class="evaluate-avatar">
+                <p class="evaluate-quote">
+                    <i class="fa-solid fa-quote-left"></i> Trải nghiệm tuyệt vời! Phòng sạch sẽ, nhân viên thân thiện và dịch vụ chuyên nghiệp. Chắc chắn sẽ quay lại lần nữa!
+                </p>
+                <div class="evaluate-name">Bạch Ngân</div>
+                <div class="evaluate-role">Khách hàng</div>
+                <div class="evaluate-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <div class="evaluate-item">
+                <img src="./image/avatar2.jpg" alt="Avatar" class="evaluate-avatar">
+                <p class="evaluate-quote">
+                    <i class="fa-solid fa-quote-left"></i> Trải nghiệm tuyệt vời! Phòng sạch sẽ, nhân viên thân thiện và dịch vụ chuyên nghiệp. Chắc chắn sẽ quay lại lần nữa!
+                </p>
+                <div class="evaluate-name">Lê Hào</div>
+                <div class="evaluate-role">Khách hàng</div>
+                <div class="evaluate-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <div class="evaluate-item">
+                <img src="./image/avatar3.jpg" alt="Avatar" class="evaluate-avatar">
+                <p class="evaluate-quote">
+                    <i class="fa-solid fa-quote-left"></i> Trải nghiệm tuyệt vời! Phòng sạch sẽ, nhân viên thân thiện và dịch vụ chuyên nghiệp. Chắc chắn sẽ quay lại lần nữa!
+                </p>
+                <div class="evaluate-name">An An</div>
+                <div class="evaluate-role">Khách hàng</div>
+                <div class="evaluate-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <div class="evaluate-item">
+                <img src="./image/avatar1.jpg" alt="Avatar" class="evaluate-avatar">
+                <p class="evaluate-quote">
+                    <i class="fa-solid fa-quote-left"></i> Trải nghiệm tuyệt vời! Phòng sạch sẽ, nhân viên thân thiện và dịch vụ chuyên nghiệp. Chắc chắn sẽ quay lại lần nữa!
+                </p>
+                <div class="evaluate-name">Linh Linh</div>
+                <div class="evaluate-role">Khách hàng</div>
+                <div class="evaluate-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+
+            <div class="evaluate-item">
+                <img src="./image/avatar3.jpg" alt="Avatar" class="evaluate-avatar">
+                <p class="evaluate-quote">
+                    <i class="fa-solid fa-quote-left"></i> Trải nghiệm tuyệt vời! Phòng sạch sẽ, nhân viên thân thiện và dịch vụ chuyên nghiệp. Chắc chắn sẽ quay lại lần nữa!
+                </p>
+                <div class="evaluate-name">An An</div>
+                <div class="evaluate-role">Khách hàng</div>
+                <div class="evaluate-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <div class="evaluate-item">
+                <img src="./image/avatar1.jpg" alt="Avatar" class="evaluate-avatar">
+                <p class="evaluate-quote">
+                    <i class="fa-solid fa-quote-left"></i> Trải nghiệm tuyệt vời! Phòng sạch sẽ, nhân viên thân thiện và dịch vụ chuyên nghiệp. Chắc chắn sẽ quay lại lần nữa!
+                </p>
+                <div class="evaluate-name">Linh Linh</div>
+                <div class="evaluate-role">Khách hàng</div>
+                <div class="evaluate-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
+        <div class="evaluate-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <div class="news-section">
+        <div class="news-header">
+            <span>News & Blog</span>
+            <h1>TIN TỨC VÀ SỰ KIỆN MỚI NHẤT</h1>
+            <a href="#" class="news-more-btn">Xem thêm <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="news-list">
+            <div class="news-card">
+                <img src="./image/news1.jpg" alt="News 1">
+                <div class="news-content">
+                    <h2>Making Business Ideas Planned</h2>
+                    <div class="news-date"><i class="fa-regular fa-calendar"></i> 19/07/2023</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                    <a href="#" class="news-detail">Chi tiết <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="./image/news2.jpg" alt="News 2">
+                <div class="news-content">
+                    <h2>Search Finance Manager Customer Support Business</h2>
+                    <div class="news-date"><i class="fa-regular fa-calendar"></i> 31/07/2023</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                    <a href="#" class="news-detail">Chi tiết <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="./image/news3.jpg" alt="News 3">
+                <div class="news-content">
+                    <h2>How To Create Dynamic Donut Charts With Tailwind</h2>
+                    <div class="news-date"><i class="fa-regular fa-calendar"></i> 31/07/2023</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
+                    <a href="#" class="news-detail">Chi tiết <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-gallery">
+            <img src="./image/footer1.jpg" alt="Gallery 1">
+            <img src="./image/footer2.jpg" alt="Gallery 2">
+            <img src="./image/footer3.jpg" alt="Gallery 3">
+            <img src="./image/footer4.jpg" alt="Gallery 4">
+            <img src="./image/footer5.jpg" alt="Gallery 5">
+            <img src="./image/footer6.jpg" alt="Gallery 6">
+        </div>
+        <div class="footer-main">
+            <div class="footer-col">
+                <h3>DANH MỤC</h3>
+                <ul>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Phòng nghỉ</a></li>
+                    <li><a href="#">Dịch vụ</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-center">
+                <div class="footer-logo">
+                    <img src="./image/logo-removebg-preview.png" alt="Golden Hotel">
+                    <div>
+                        <span class="footer-hotel-name">Golden Hotel</span>
+                        <span class="footer-hotel-brand">Mona Media</span>
+                    </div>
+                </div>
+                <h2>ĐĂNG KÝ ĐỂ NHẬN BẢN TIN</h2>
+                <form class="footer-newsletter">
+                    <input type="email" placeholder="Nhập email..." required>
+                    <button type="submit">Đăng ký <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+            <div class="footer-col">
+                <h3>LIÊN KẾT</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Dịch vụ</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Latest News</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div id="footer-album-modal" class="footer-album-modal">
+        <span class="footer-album-close">&times;</span>
+        <img class="footer-album-img" src="" alt="Album">
+        <div class="footer-album-nav">
+            <span class="footer-album-prev">&#10094;</span>
+            <span class="footer-album-next">&#10095;</span>
+        </div>
+    </div>
+    <script src="./js/script.js " defer></script>
+</body>
+
+</html>
